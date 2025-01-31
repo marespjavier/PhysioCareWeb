@@ -1,0 +1,19 @@
+{% extends 'base.njk' %}
+{% block contenido %}
+    <h1>Detalle de Paciente</h1>
+    <p>Nombre: {{ patient.name }}</p>
+    <p>Apellido: {{ patient.surname }}</p>
+    <p>Nacimiento: {{ patient.birthDate | formatDate }}</p>
+    <p>Dirección: {{patient.address}} </p>
+    <p>Insurance Number: {{patient.insuranceNumber}}
+    {% if patient.imagen %}
+            <p><img src="/public/uploads/{{ patient.imagen }}"></p>
+        {% endif %}
+{% if session.rol == 'admin' or session.rol == 'physio' %}
+    <a href="/patients/{{ patient._id }}/edit" class="btn btn-primary">Editar Paciente</a>
+{% endif %}
+
+{% if session.rol == 'patient' and session.userId == patient._id %}
+    <a href="/patients/{{ patient._id }}/edit" class="btn btn-primary">Editar Mis Datos</a>
+{% endif %}
+{% endblock %}

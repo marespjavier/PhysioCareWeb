@@ -1,0 +1,61 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Fisio | Editar{% endblock %}
+
+{% block contenido %}
+
+    <h1>Edición de fisio existente</h1>
+
+    {% if (physio) %}
+
+        {% if errores.general %}
+            <p class="alert alert-danger">{{ errores.general }}</p>
+        {% endif %}
+
+       <form action="/physios/{{ physio._id }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Nombre:</label>
+                <input type="text" class="form-control" name="name" 
+                    placeholder="Nombre del fisio..." value="{{ physio.name }}"/>
+                {% if errores.name %}
+                    <p class="text-danger">{{ errores.name }}</p>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="surname">Apellido:</label>
+                <input type="text" class="form-control" name="surname"
+                    placeholder="Apellido del fisio..." value="{{ physio.surname }}"/>
+                {% if errores.surname %}
+                    <p class="text-danger">{{ errores.surname }}</p>
+                {% endif %}
+            </div>
+            <div class="form-group">
+            <label for="speciality">Especialidad:</label>
+            <input type="text" class="form-control" name="speciality" 
+            placeholder="Especialidad..." value="{{ physio.speciality }}">
+            {% if errores.speciality %}
+                <p class="text-danger">{{ errores.speciality }}</p>
+            {% endif %}
+            </div>
+             <div class="form-group">
+            <label for="licenseNumber">Licencia:</label>            
+            <input type="text" class="form-control" name="licenseNumber"
+                placeholder="Número de licencia..." value="{{ physio.licenseNumber }}">
+            {% if errores.licenseNumber %}
+                <p class="text-danger">{{ errores.licenseNumber }}</p>
+            {% endif %}
+            </div>
+            <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" class="form-control" name="imagen"
+                placeholder="Foto del fisio..." />
+            {% if errores.imagen %}
+                <p class="text-danger">{{ physio.imagen }}</p>
+            {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary">Editar fisio</button>
+        </form>
+    {% else %}
+        <div class="alert alert-danger">Fisio no especificado</div>
+    {% endif %}
+{% endblock %}

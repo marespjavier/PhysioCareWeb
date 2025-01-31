@@ -1,0 +1,33 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Detalle del Expediente{% endblock %}
+
+{% block contenido %}
+    <h1>Detalle del Expediente Médico</h1>
+
+    <h2>Información del Paciente</h2>
+    <p><strong>Nombre:</strong> {{ record.patient.name }}</p>
+    <p><strong>Apellido:</strong> {{ record.patient.surname }}</p>
+    <p><strong>Número de Seguro:</strong> {{ record.patient.insuranceNumber }}</p>
+
+    <h2>Observaciones</h2>
+    <p>{{ record.medicalRecord }}</p>
+
+    <h2>Citas</h2>
+    {% if record.appointments.length > 0 %}
+        <ul>
+            {% for appointment in record.appointments %}
+                <li>
+                    <p><strong>Fecha:</strong> {{ appointment.date | formatDate }}</p>
+                    <p><strong>Diagnóstico:</strong> {{ appointment.diagnosis }}</p>
+                    <p><strong>Tratamiento:</strong> {{ appointment.treatment }}</p>
+                    <p><strong>Fisioterapeuta:</strong> {{ appointment.physio.name }}</p>
+                    <p><strong>Observaciones:</strong> {{ appointment.observations }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No hay citas asociadas a este expediente.</p>
+    {% endif %}
+    <a href="/records/{{ record._id }}/appointments/new" class="btn btn-primary btn-sm">Agregar cita</a>
+{% endblock %}

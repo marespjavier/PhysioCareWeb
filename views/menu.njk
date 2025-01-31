@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/patients">PhysioCare</a>
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+        >
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {% if session.rol == 'admin' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/patients">Gestión de Pacientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/physios">Gestión de Fisioterapeutas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/records">Gestión de Expedientes</a>
+                    </li>
+                {% elif session.rol == 'physio' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/patients">Gestión de Pacientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/records">Gestión de Expedientes</a>
+                    </li>
+                {% elif session.rol == 'patient' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/patients/me">Mis Datos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/records">Mis Expedientes</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <span class="navbar-text me-3">
+                Bienvenido, {{ session.usuario }}
+            </span>
+            <a class="btn btn-outline-danger" href="/auth/logout">Cerrar Sesión</a>
+        </div>
+    </div>
+</nav>

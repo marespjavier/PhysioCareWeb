@@ -1,0 +1,33 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Lista de Fisios{% endblock %}
+
+{% block contenido %}
+<h1>Lista de Fisios</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for physio in physios %}
+        <tr>
+            <td>{{ physio.name }}</td>
+            <td>{{ physio.surname }}</td>
+            <td>
+                <a class="btn btn-primary btn-sm" href="/physios/{{ physio._id }}">Ver Detalles</a>
+                <a class="btn btn-warning btn-sm" href="/physios/{{ physio._id }}/edit">Editar Fisio</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<form action="/physios/find" method="get" class="form-inline">
+<input type="text" name="speciality" class="form-control form-control-sm" placeholder="Especialidad del fisio" style="width: 200px;">
+<button type="submit" class="btn btn-primary btn-sm">Buscar</button>
+</form>
+<a class="btn btn-success" href="/physios/new">Agregar Fisio</a>
+{% endblock %}

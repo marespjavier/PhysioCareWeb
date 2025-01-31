@@ -1,0 +1,28 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Iniciar sesión{% endblock %}
+
+{% block contenido %}
+<h1>Iniciar sesión</h1>
+
+<form action="/auth/login" method="post">
+    <div class="form-group">
+        <label for="login">Usuario:</label>
+        <input type="text" class="form-control" name="login" id="login" placeholder="Introduce tu usuario">
+        {% if errores.login %}
+            <p class="text-danger">{{ errores.login }}</p>
+        {% endif %}
+    </div>
+    <div class="form-group">
+        <label for="password">Contraseña:</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Introduce tu contraseña">
+        {% if errores.password %}
+            <p class="text-danger">{{ errores.password }}</p>
+        {% endif %}
+    </div>
+    {% if errores.general %}
+        <p class="text-danger">{{ errores.general }}</p>
+    {% endif %}
+    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+</form>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Paciente | Nuevo{% endblock %}
+
+{% block contenido %}
+
+    <h1>Inserción de nuevo paciente</h1>
+
+    {% if errores.general %}
+        <p class="alert alert-danger">{{ errores.general }}</p>
+    {% endif %}
+
+    <form action="/patients" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" name="name" 
+                placeholder="Nombre del paciente..." value="{{ datos.name }}">
+            {% if errores.name %}
+                <p class="text-danger">{{ errores.name }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>            
+            <input type="text" class="form-control" name="surname"
+                placeholder="Apellido del paciente..." value="{{ datos.surname }}">
+            {% if errores.surname %}
+                <p class="text-danger">{{ errores.surname }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="birthDate">birthdate:</label>
+            <input type="date" class="form-control" name="birthDate" 
+            placeholder="Fecha de nacimiento..." value="{{ datos.birthDate }}">
+            {% if errores.birthDate %}
+                <p class="text-danger">{{ errores.birthDate }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="address">Address:</label>            
+            <input type="text" class="form-control" name="address"
+                placeholder="Dirección del paciente..." value="{{ datos.address }}">
+            {% if errores.address %}
+                <p class="text-danger">{{ errores.address }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="insuranceNumber">insuranceNumber:</label>            
+            <input type="text" class="form-control" name="insuranceNumber"
+                placeholder="insuranceNumber del paciente..." value="{{ datos.insuranceNumber }}">
+            {% if errores.insuranceNumber %}
+                <p class="text-danger">{{ errores.insuranceNumber }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" class="form-control" name="imagen"
+                placeholder="Foto del paciente..." />
+            {% if errores.imagen %}
+                <p class="text-danger">{{ errores.imagen }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="login">Login:</label>
+            <input type="text" class="form-control" name="login" 
+                placeholder="Nombre de usuario..." value="{{ datos.login }}">
+            {% if errores.login %}
+                <p class="text-danger">{{ errores.login }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" 
+                placeholder="Contraseña del usuario..." value="{{ datos.password }}">
+            {% if errores.password %}
+                <p class="text-danger">{{ errores.password }}</p>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+{% endblock %}

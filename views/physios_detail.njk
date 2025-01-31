@@ -1,0 +1,11 @@
+{% extends 'base.njk' %}
+{% block contenido %}
+    <h1>Detalle de Fisioterapeuta</h1>
+    <p>Nombre: {{ physio.name }}</p>
+    <p>Apellido: {{ physio.surname }}</p>
+    <p>Especialidad: {{ physio.speciality}}</p>
+    <p>Número de licencia: {{ physio.licenseNumber }}</p>
+    {% if physio.imagen %}
+            <p><img src="/public/uploads/{{ physio.imagen }}"></p>
+        {% endif %}
+{% endblock %}

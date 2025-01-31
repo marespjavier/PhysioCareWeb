@@ -1,0 +1,8 @@
+{% extends 'base.njk' %}
+{% block contenido %}
+    <div class="alert alert-danger">
+        <h1>Error</h1>
+        <p>{{ error }}</p>
+        <a href="/patients" class="btn btn-primary">Volver al listado</a>
+    </div>
+{% endblock %}

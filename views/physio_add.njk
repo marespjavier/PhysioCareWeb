@@ -1,0 +1,73 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Fisios | Nuevo{% endblock %}
+
+{% block contenido %}
+
+    <h1>Inserción de nuevo fisio</h1>
+
+    {% if errores.general %}
+        <p class="alert alert-danger">{{ errores.general }}</p>
+    {% endif %}
+
+    <form action="/physios" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" name="name" 
+                placeholder="Nombre del fisio..." value="{{ datos.name }}">
+            {% if errores.name %}
+                <p class="text-danger">{{ errores.name }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname:</label>            
+            <input type="text" class="form-control" name="surname"
+                placeholder="Apellido del fisio..." value="{{ datos.surname }}">
+            {% if errores.surname %}
+                <p class="text-danger">{{ errores.surname }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="speciality">Especialidad:</label>
+            <input type="text" class="form-control" name="speciality" 
+            placeholder="Especialidad..." value="{{ datos.speciality }}">
+            {% if errores.speciality %}
+                <p class="text-danger">{{ errores.speciality }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="licenseNumber">Licencia:</label>            
+            <input type="text" class="form-control" name="licenseNumber"
+                placeholder="Número de licencia..." value="{{ datos.licenseNumber }}">
+            {% if errores.licenseNumber %}
+                <p class="text-danger">{{ errores.licenseNumber }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="imagen">Imagen</label>
+            <input type="file" class="form-control" name="imagen"
+                placeholder="Foto del fisio..." />
+            {% if errores.imagen %}
+                <p class="text-danger">{{ errores.imagen }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="login">Login:</label>
+            <input type="text" class="form-control" name="login" 
+                placeholder="Nombre de usuario..." value="{{ datos.login }}">
+            {% if errores.login %}
+                <p class="text-danger">{{ errores.login }}</p>
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" class="form-control" name="password" 
+                placeholder="Contraseña del usuario..." value="{{ datos.password }}">
+            {% if errores.password %}
+                <p class="text-danger">{{ errores.password }}</p>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+
+{% endblock %}

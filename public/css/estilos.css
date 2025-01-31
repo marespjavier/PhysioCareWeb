@@ -1,0 +1,8 @@
+/* public/css/estilos.css */
+body {
+    background-color: lightgray;
+}
+.navbar {
+    background-color: #007bff;
+    color: white;
+}
